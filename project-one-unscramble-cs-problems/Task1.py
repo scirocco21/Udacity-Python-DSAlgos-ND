@@ -18,15 +18,13 @@ How many different telephone numbers are there in the records?
 Print a message:
 "There are <count> different telephone numbers in the records."
 """
-uniques = {}
+uniques = set()
 count_uniques = 0
 
 def add_phone_number(num):
     global uniques
-    global count_uniques
     if not num in uniques:
-        uniques[num] = True
-        count_uniques += 1
+        uniques.add(num)
 
 def traverse_columns(stop_index, array):
     for i in range(stop_index):
@@ -36,4 +34,4 @@ def traverse_columns(stop_index, array):
 traverse_columns(len(calls)-1, calls)
 traverse_columns(len(texts)-1, texts)
 
-print("There are " + str(count_uniques) + " different telephone numbers in the records.")
+print("There are " + str(len(uniques)) + " different telephone numbers in the records.")
