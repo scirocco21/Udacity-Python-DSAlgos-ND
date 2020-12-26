@@ -36,3 +36,13 @@ class LinkedList:
         self.head = Node(value)
         self.head.next = node
         return
+
+    def size(self):
+      size = 0
+      if self.head is None:
+          return size
+      node = self.head
+      while node:
+          size += 1
+          node= node.next
+      return size
