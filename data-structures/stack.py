@@ -4,3 +4,10 @@ class Stack:
         self.arr = [0 for _ in range(initial_size)]
         self.next_index = 0
         self.num_elements = 0
+    
+    def push(self, value):
+        # use next_index property to insert at top of the stack
+        self.arr[next_index] = value
+        # increment next_index and num_elements
+        self.next_index += 1
+        self.num_elements += 1
