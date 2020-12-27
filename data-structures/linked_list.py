@@ -47,7 +47,7 @@ class LinkedList:
             node= node.next
         return size
 
-    def reverse_same_list(self):
+    def reverse_self(self):
         values = []
         if self.head is None:
             return values
@@ -60,4 +60,14 @@ class LinkedList:
             node.value = value
             node = node.next
         return self
+    
+    def make_reverse_copy(self):
+        if self.head is None:
+          return self
+        flipped_list = LinkedList()
+        node = self.head
+        while node:
+          flipped_list.prepend(node.value)
+          node = node.next
+        return flipped_list
     
