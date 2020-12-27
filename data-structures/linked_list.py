@@ -70,4 +70,13 @@ class LinkedList:
           flipped_list.prepend(node.value)
           node = node.next
         return flipped_list
-    
+        
+    def search(self, value):
+      if self.head is None:
+          return None
+      node = self.head
+      while node:
+          if node.value == value:
+              return value
+          node = node.next
+      return None
