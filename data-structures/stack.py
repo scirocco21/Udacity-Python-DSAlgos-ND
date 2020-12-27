@@ -7,7 +7,7 @@ class Stack:
     
     def push(self, value):
         # use next_index property to insert at top of the stack
-        self.arr[next_index] = value
+        self.arr[self.next_index] = value
         # increment next_index and num_elements
         self.next_index += 1
         self.num_elements += 1
