@@ -48,7 +48,6 @@ class LinkedList:
         return size
 
     def reverse_same_list(self):
-        # store node values
         values = []
         if self.head is None:
             return values
@@ -56,11 +55,9 @@ class LinkedList:
         while node:
             values.append(node.value)
             node = node.next
-        # overwrite existing values in reverse order
+        node = self.head
         for value in reversed(values):
-            node = self.head
-            while node:
-                node.value = value
-                node = node.next
+            node.value = value
+            node = node.next
         return self
     
