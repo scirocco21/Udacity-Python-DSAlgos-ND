@@ -11,3 +11,12 @@ class Stack:
         # increment next_index and num_elements
         self.next_index += 1
         self.num_elements += 1
+
+    def handle_stack_capacity_full(self):
+        # copy over old array
+        old_arr = self.arr
+        # create new array with larger size
+        self.arr = [0 for i in range(2*len(old_arr))]
+        # write old array values into new array at same positions
+        for index,value in enumerate(old_arr):
+            self.arr[index] = value
