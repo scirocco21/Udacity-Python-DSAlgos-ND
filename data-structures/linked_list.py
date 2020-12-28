@@ -28,13 +28,13 @@ class LinkedList:
 
     def prepend(self, value):
         # if there's not a head node already, create one
+        new_node = Node(value)
         if self.head is None:
-            self.head = Node(value)
+            self.head = new_node
             return
-        # otherwise create head one and assign old one to its next property
-        node = self.head
-        self.head = Node(value)
-        self.head.next = node
+        # otherwise create head node and assign old one to its next property
+        self.head = new_node
+        self.head.next = self.head
         return
 
     def size(self):
