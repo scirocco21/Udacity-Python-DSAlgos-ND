@@ -10,10 +10,15 @@ class Stack:
         self.head = None
         self.num_elements = 0
         
-    # TODO: Add the push method
     def push(self,value):
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
         new_node.next = self.head
         self.head = new_node
+    
+    def size(self):
+        return self.num_elements
+    
+    def is_empty(self):
+        return self.num_elements == 0
