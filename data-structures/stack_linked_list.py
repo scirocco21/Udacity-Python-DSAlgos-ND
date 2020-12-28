@@ -16,6 +16,8 @@ class Stack:
             self.head = new_node
         new_node.next = self.head
         self.head = new_node
+
+        self.num_elements += 1
     
     def size(self):
         return self.num_elements
