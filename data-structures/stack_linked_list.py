@@ -24,3 +24,11 @@ class Stack:
     
     def is_empty(self):
         return self.num_elements == 0
+
+    def pop(self):
+        if self.head is None:
+            return None
+        top = self.head
+        self.head = top.next
+        self.num_elements -= 1
+        return top
