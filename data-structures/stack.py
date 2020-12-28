@@ -6,12 +6,14 @@ class Stack:
         self.num_elements = 0
     
     def push(self, value):
+        if len(self.arr) == self.next_index:
+          self.handle_stack_capacity_full()
         # use next_index property to insert at top of the stack
         self.arr[self.next_index] = value
         # increment next_index and num_elements
         self.next_index += 1
         self.num_elements += 1
-
+      
     def handle_stack_capacity_full(self):
         # copy over old array
         old_arr = self.arr
@@ -20,3 +22,9 @@ class Stack:
         # write old array values into new array at same positions
         for index,value in enumerate(old_arr):
             self.arr[index] = value
+
+    def size(self):
+        return self.num_elements
+
+    def is_empty(self):
+        return self.num_elements == 0
