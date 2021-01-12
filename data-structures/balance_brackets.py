@@ -1,11 +1,11 @@
- """
-    Check equation for balanced parentheses
+"""
+  Check equation for balanced parentheses
 
-    Args:
-       equation(string): String form of equation
-    Returns:
-       bool: Return if parentheses are balanced or not
-    """
+  Args:
+      equation(string): String form of equation
+  Returns:
+      bool: Return if parentheses are balanced or not
+"""
 
 class Stack:
     def __init__(self):
