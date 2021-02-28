@@ -21,7 +21,7 @@ class Block:
 
 class Blockchain:
   
-    def __init___(self):
+    def __init__(self):
       self.latest_block = None
       self.size = 0
 
