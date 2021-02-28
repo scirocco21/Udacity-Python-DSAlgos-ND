@@ -17,3 +17,19 @@ class Block:
       self.data = data
       self.previous_hash = previous_hash
       self.hash = self.calc_hash()
+
+
+class Blockchain:
+  
+    def __init___(self):
+      self.latest_block = None
+      self.size = 0
+
+    def append(self, data):
+      timestamp = datetime.now()
+      if self.latest_block is None:
+        self.latest_block = Block(timestamp, data, None)
+      else:
+        self.latest_block = Block(timestamp, data, self.latest_block.previous_hash)
+      self.size += 1
+
