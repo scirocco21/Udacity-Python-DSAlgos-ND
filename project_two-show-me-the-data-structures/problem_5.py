@@ -7,15 +7,12 @@ class Block:
       self.timestamp = timestamp
       self.data = data
       self.previous_hash = previous_hash
-      self.hash = self.calc_hash()
+      self.hash = self.calc_hash(self.data)
 
-    def calc_hash(self):
+    def calc_hash(self, data):
         sha = hashlib.sha256()
-
-        hash_str = "We are going to encode this string of data!".encode('utf-8')
-
+        hash_str = data.encode('utf-8')
         sha.update(hash_str)
-
         return sha.hexdigest()
 
 class Blockchain:
