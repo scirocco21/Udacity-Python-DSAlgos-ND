@@ -15,6 +15,7 @@ class Block:
         sha.update(hash_str)
         return sha.hexdigest()
     
+    # check if data has been tempered with (and so does match the hash value)
     def validate_block(self):
       return self.hash == self.calc_hash(self.data)
 
@@ -33,3 +34,24 @@ class Blockchain:
         self.latest_block = Block(timestamp, data, self.latest_block.previous_hash)
       self.size += 1
 
+
+    def validate_chain(self):
+      # empty chain is trivially valid
+      if self.size == 0:
+        return True
+      # chain with single block has no connection to previous blocks
+      if self.size == 1:
+        return self.latest_block.validate_block()
+      # for chains with size > 1, check (1) that blocks have not been tempered with 
+      # and (2) that they link correctly to previous blocks in the chain
+      current_block = self.latest_block
+      previous_block = current_block.previous_block
+      while previous_block is not None:
+        print(previous_block.hash == current_block.previous_hash)
+        if not current_block.validate_block():
+          return False
+        if not previous_block.hash == current_block.previous_hash:
+          return False
+        current_block = previous_block
+        previous_block = current_block.previous_block
+      return True
