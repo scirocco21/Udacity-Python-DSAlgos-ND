@@ -58,21 +58,23 @@ def intersection(llist_1, llist_2):
     list_values_1 = set()
     list_values_2 = set()
     intersection = set()
-
+    # if either list is empty there is no intersection 
     if llist_1.head is None or llist_2.head is None:
         return None
 
     head_1 = llist_1.head
     head_2 = llist_2.head
-
+    # go over both lists at the same time until you reach the end of both lists
     while head_1 or head_2:
         if head_1:
+          # if a node value in list is already in our list 2 bucket, it is part of the intersection
             if head_1.value in list_values_2:
                 intersection.add(head_1.value)
-            else:
-                list_values_1.add(head_1.value)
+          # add the node value to its own list 1 values bucket
+            list_values_1.add(head_1.value)
             head_1 = head_1.next
         if head_2:
+          # same as above, in reverse:
             if head_2.value in list_values_1:
                 intersection.add(head_2.value)
             list_values_2.add(head_2.value)
