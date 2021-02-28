@@ -40,20 +40,18 @@ class LinkedList:
 
         return size
 
+    def copy_values(self, set):
+      head = self.head
+      while head is not None:
+        set.add(head.value)
+        head = head.next
+
 
 def union(llist_1, llist_2):
     # traverse each list and store unique values in union set
     union = set()
-
-    head = llist_1.head
-    while head is not None:
-        union.add(head.value)
-        head = head.next
-
-    head = llist_2.head
-    while head is not None:
-        union.add(head.value)
-        head = head.next
+    for list in (llist_1, llist_2):
+      list.copy_values(union)
     return union
 
 # Test case 1
