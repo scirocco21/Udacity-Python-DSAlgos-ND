@@ -14,6 +14,10 @@ class Block:
         hash_str = data.encode('utf-8')
         sha.update(hash_str)
         return sha.hexdigest()
+    
+    def validate_block(self):
+      return self.hash == self.calc_hash(self.data)
+
 
 class Blockchain:
   
