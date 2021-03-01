@@ -18,6 +18,12 @@ class LRU_Cache(object):
         if key not in self.queue:
           if self.size < self.capacity:
             self.queue[key] = value
+            self.size += 1
+          else:
+            # if the cache is at capacity, remove first item in insertion order
+            self.queue.popitem()
+            # then add new item on top
+            self.queue[key] = value
 
 our_cache = LRU_Cache(5)
 
