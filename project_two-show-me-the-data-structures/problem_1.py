@@ -11,7 +11,12 @@ class LRU_Cache(object):
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
         if key in self.queue:
-          return self.queue[key]
+          # get is a use operation so the item queried for needs to be moved 'up'
+          val = self.queue[key]
+          del self.queue[key]
+          # adding the key back in moves it up in insertion order
+          self.queue[key] = val          
+          return val
         return - 1
 
     def set(self, key, value):
