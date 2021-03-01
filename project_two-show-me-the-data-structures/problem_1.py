@@ -1,17 +1,23 @@
+from collections import OrderedDict 
+
 class LRU_Cache(object):
 
     def __init__(self, capacity):
         # Initialize class variables
-        self.stack = []
-        self.lookup = {}
-        self.size = 0
+        self.queue = OrderedDict()
         self.capacity = capacity
+        self.size = 0
 
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
+        if key in self.queue:
+          return self.queue[key]
+        return - 1
+
     def set(self, key, value):
-        # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
-        
+        if key not in self.queue:
+          if self.size < self.capacity:
+            self.queue[key] = value
 
 our_cache = LRU_Cache(5)
 
