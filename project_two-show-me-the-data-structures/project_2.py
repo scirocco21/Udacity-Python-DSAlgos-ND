@@ -3,10 +3,12 @@ import os
 def find_files(suffix, path):
     result = []
     for filename in os.listdir(path):
-      # 
-      if os.path.isfile(path) and path.endswith(suffix):
-        result.append(path)
-      elif os.path.isdir(path):
-        # use recursion here
+      # use join method to get actual filepath, not just name
+      filepath = os.path.join(path,filename)
 
+      if os.path.isfile(filepath) and filename.endswith(suffix):
+        result.append(filename)
+      elif os.path.isdir(filepath):
+      # use recursion here
+        find_files(suffix,filepath)
     return result
