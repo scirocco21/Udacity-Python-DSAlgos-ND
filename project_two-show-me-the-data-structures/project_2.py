@@ -1,7 +1,6 @@
 import os
-
+result = []
 def find_files(suffix, path):
-    result = []
     for filename in os.listdir(path):
       # use join method to get actual filepath, not just name
       filepath = os.path.join(path,filename)
@@ -12,3 +11,8 @@ def find_files(suffix, path):
       # use recursion here
         find_files(suffix,filepath)
     return result
+
+# TEST
+# files = find_files(".c", "/Users/sebastiangertz/Desktop/Current Projects/Udacity-Python-DSAlgos-ND/project_two-show-me-the-data-structures/testdir")
+# for item in files:
+  # print(item)
