@@ -31,12 +31,18 @@ sub_child.add_user(sub_child_user)
 child.add_group(sub_child)
 parent.add_group(child)
 
+visited_groups = []
+
 def is_user_in_group(user, group):
   for member in group.users:
     if member == user:
       return True
   for member in group.groups:
-    return is_user_in_group(user,member)  
+     # only go through groups that have not been visited
+    if member not in visited_groups:
+      return is_user_in_group(user,member)
+    # if the group doesn't have the user, don't search again
+    visited_groups.append(member)
   return None
 
 # print(is_user_in_group("bob", parent))
