@@ -65,5 +65,8 @@ class MinHeap:
       # move up one level
       self_position = self.getParentIndex(self_position)
 
-
-
+  def insert(self,item):
+    # append item to the end of the list
+    self.heap.append(item)
+    # rerrange the heap from bottom up after insertion
+    self.reorderHeap(len(self.heap) - 1)
