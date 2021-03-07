@@ -24,9 +24,7 @@ def create_freq_hash(data):
 # for key in hash:
 #   print(key, hash[key])
 
-
-# Step 2: convert the frequency hash into a priority queue represented by min heap
-
+# Step 2: define Priority Queue class using min heap
 class MinHeap:
   def __init__(self):
     # set up heap as list of nodes
@@ -79,4 +77,14 @@ class MinHeap:
     self.heap[0] = self.heap[len(self.heap) - 1]
     self.heap.pop()
     return root
+
+# Step 3: Transform the key, value pairs in the frequency hash into a priority queue
+priority_queue = MinHeap()
+data = "Hello World"
+freq_hash = create_freq_hash(data)
+
+for item in freq_hash:
+  priority_queue.insert(item)
+
+# TODO: rewrite reorder heap method to take into account tuples in list
 
