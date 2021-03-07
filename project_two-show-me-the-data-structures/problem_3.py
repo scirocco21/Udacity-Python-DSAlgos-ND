@@ -52,3 +52,6 @@ class MinHeap:
   def hasRightChild(self,self_position):
     return self.getRightChildIndex(self_position) < len(self.heap)
   
+  def getMin(self):
+    return self.heap[0]
+  
