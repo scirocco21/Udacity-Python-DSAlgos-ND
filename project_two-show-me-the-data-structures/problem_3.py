@@ -27,3 +27,19 @@ def create_freq_hash(data):
 
 # Step 2: convert the frequency hash into a priority queue represented by min heap
 
+class MinHeap:
+  def __init__(self):
+    # set up heap as list of nodes
+    self.heap = []
+
+  # helper methods to get index positions of parent/child nodes in the heap list
+  def getParentIndex(self, self_position):
+    return int((self_position - 1) / 2)
+  
+  def getLeftChildIndex(self, self_position):
+    return 2 * self_position + 1
+
+  def getRightChildIndex(self, self_position):
+    return 2 * self_position + 2
+
+  
