@@ -70,3 +70,13 @@ class MinHeap:
     self.heap.append(item)
     # rerrange the heap from bottom up after insertion
     self.reorderHeap(len(self.heap) - 1)
+
+  def delete_min(self,item):
+    if len(self.heap) == 0:
+      return "Heap is empty"
+    root = self.getMin()
+    # swap root with last item in the heap
+    self.heap[0] = self.heap[len(self.heap) - 1]
+    self.heap.pop()
+    return root
+
