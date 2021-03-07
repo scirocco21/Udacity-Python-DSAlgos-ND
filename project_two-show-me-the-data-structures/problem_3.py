@@ -55,3 +55,15 @@ class MinHeap:
   def getMin(self):
     return self.heap[0]
   
+  # fix the order of nodes to maintain heap property when deleting or inserting a node
+  def reorderHeap(self, self_position):
+    # "bubble up" as long as there is a leaf node
+    while(self.hasParent(self_position)):
+      # if two nodes violate min heap property, perform swap
+      if self.heap[self_position] < self.heap[self.getParentIndex(self_position)]:
+        self.heap[self_position], self.heap[self.getParentIndex(self_position)] = self.heap[self.getParentIndex(self_position)],self.heap[self_position]
+      # move up one level
+      self_position = self.getParentIndex(self_position)
+
+
+
