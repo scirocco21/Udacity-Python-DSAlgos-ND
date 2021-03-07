@@ -42,4 +42,13 @@ class MinHeap:
   def getRightChildIndex(self, self_position):
     return 2 * self_position + 2
 
+  # helper methods to determine if a given node has a Parent/left or right child
+  def hasParent(self,self_position):
+    return self.getParentIndex(self_position) < len(self.heap)
+
+  def hasLeftChild(self, self_position):
+    return self.getLeftChildIndex(self_position) < len(self.heap)
+  
+  def hasRightChild(self,self_position):
+    return self.getRightChildIndex(self_position) < len(self.heap)
   
