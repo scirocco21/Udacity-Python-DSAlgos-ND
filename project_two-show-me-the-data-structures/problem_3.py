@@ -55,11 +55,10 @@ class MinHeap:
   
   # fix the order of nodes to maintain heap property when deleting or inserting a node
   def reorderHeap(self, self_position):
-    # "bubble up" as long as there is a leaf node
-    while(self.hasParent(self_position)):
+    # "bubble up" as long as there is a leaf node and nodes are out of order
+    while self.hasParent(self_position) and self.heap[self_position][1] < self.heap[self.getParentIndex(self_position)][1]:
       # if two nodes violate min heap property, perform swap
-      if self.heap[self_position] < self.heap[self.getParentIndex(self_position)]:
-        self.heap[self_position], self.heap[self.getParentIndex(self_position)] = self.heap[self.getParentIndex(self_position)],self.heap[self_position]
+      self.heap[self_position], self.heap[self.getParentIndex(self_position)] = self.heap[self.getParentIndex(self_position)],self.heap[self_position]
       # move up one level
       self_position = self.getParentIndex(self_position)
 
@@ -69,7 +68,7 @@ class MinHeap:
     # rerrange the heap from bottom up after insertion
     self.reorderHeap(len(self.heap) - 1)
 
-  def delete_min(self,item):
+  def delete_min(self):
     if len(self.heap) == 0:
       return "Heap is empty"
     root = self.getMin()
@@ -83,8 +82,13 @@ priority_queue = MinHeap()
 data = "Hello World"
 freq_hash = create_freq_hash(data)
 
-for item in freq_hash:
-  priority_queue.insert(item)
+for key,value in freq_hash.items():
+  priority_queue.insert([key,value])
 
-# TODO: rewrite reorder heap method to take into account tuples in list
+# TEST
+# priority_queue.delete_min()
+
+# for item in priority_queue.heap:
+#   print(item)
+
 
