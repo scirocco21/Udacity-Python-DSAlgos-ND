@@ -92,3 +92,16 @@ for key,value in freq_hash.items():
 #   print(item)
 
 
+class HuffmannTree:
+  def insert(nodeA, nodeB)
+    new_node_A = new HuffmannNode(nodeA)
+    new_node_B = new HuffmannNode(nodeB)
+    new_node_C = mergeNodes(new_node_A, new_node_B)
+
+
+class HuffmannNode:
+  def __init__(node):
+    self.right = None
+    self.left = None
+    self.freq = node.freq
+    self.char = node.char
