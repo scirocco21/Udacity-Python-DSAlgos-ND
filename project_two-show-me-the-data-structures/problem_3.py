@@ -99,7 +99,12 @@ class HuffmannTree:
     # insert new node back into priority queue
     return HuffmannNode(node)
 
-  def insert(self,nodeA, nodeB):
+  def insert(self,priority_queue):
+    nodeA = priority_queue.getMin()
+    priority_queue.delete_min()
+    nodeB = priority_queue.getMin()
+    priority_queue.delete_min()
+    
     new_node_A = HuffmannNode(nodeA)
     new_node_B = HuffmannNode(nodeB)
     new_node_C = self.mergeNodes(new_node_A, new_node_B)
