@@ -1,10 +1,11 @@
 import sys
+import heapq
 
-def huffman_encoding(data):
-    freq_hash = create_freq_hash(data)
+# def huffman_encoding(data):
+#     freq_hash = create_freq_hash(data)
 
-def huffman_decoding(data,tree):
-    pass
+# def huffman_decoding(data,tree):
+#     pass
 
 # Step 1: convert a character into a frequency hash (include empty spaces as characters as well!)
 
@@ -24,96 +25,58 @@ def create_freq_hash(data):
 # for key in hash:
 #   print(key, hash[key])
 
-# Step 2: define Priority Queue class using min heap
-class MinHeap:
-  def __init__(self):
-    # set up heap as list of nodes
-    self.heap = []
+# Step 2: Transform the key, value pairs in the frequency hash into a priority queue
+def build_min_heap(data):
+  heap_array = []
+  freq_hash = create_freq_hash(data)
+  for key in freq_hash:
+    heap_array.append([freq_hash[key],key])
+  heapq.heapify(heap_array)
+  return heap_array
 
-  # helper methods to get index positions of parent/child nodes in the heap list
-  def getParentIndex(self, self_position):
-    return int((self_position - 1) / 2)
-  
-  def getLeftChildIndex(self, self_position):
-    return 2 * self_position + 1
+# Step 3: Test
+data = "AAAAAAABBBCCCCCCCDDEEEEEE"
 
-  def getRightChildIndex(self, self_position):
-    return 2 * self_position + 2
-
-  # helper methods to determine if a given node has a Parent/left or right child
-  def hasParent(self,self_position):
-    return self.getParentIndex(self_position) < len(self.heap)
-
-  def hasLeftChild(self, self_position):
-    return self.getLeftChildIndex(self_position) < len(self.heap)
-  
-  def hasRightChild(self,self_position):
-    return self.getRightChildIndex(self_position) < len(self.heap)
-  
-  def getMin(self):
-    return self.heap[0]
-  
-  # fix the order of nodes to maintain heap property when deleting or inserting a node
-  def reorderHeap(self, self_position):
-    # "bubble up" as long as there is a leaf node and nodes are out of order
-    while self.hasParent(self_position) and self.heap[self_position][1] < self.heap[self.getParentIndex(self_position)][1]:
-      # if two nodes violate min heap property, perform swap
-      self.heap[self_position], self.heap[self.getParentIndex(self_position)] = self.heap[self.getParentIndex(self_position)],self.heap[self_position]
-      # move up one level
-      self_position = self.getParentIndex(self_position)
-
-  def insert(self,item):
-    # append item to the end of the list
-    self.heap.append(item)
-    # rerrange the heap from bottom up after insertion
-    self.reorderHeap(len(self.heap) - 1)
-
-  def delete_min(self):
-    if len(self.heap) == 0:
-      return "Heap is empty"
-    root = self.getMin()
-    # swap root with last item in the heap
-    self.heap[0] = self.heap[len(self.heap) - 1]
-    self.heap.pop()
-    return root
-
-# Step 3: Transform the key, value pairs in the frequency hash into a priority queue
-priority_queue = MinHeap()
-data = "Hello World"
 freq_hash = create_freq_hash(data)
+priority_queue = build_min_heap(data)
 
-for key,value in freq_hash.items():
-  priority_queue.insert([key,value])
+for item in priority_queue:
+  print(item)
+heapq.heappop(priority_queue)
+print("The smallest item is: ",priority_queue[0])
 
-# TEST
-# priority_queue.delete_min()
+# class HuffmannTree:
+#   def mergeNodes(self,nodeA,nodeB, priority_queue):
+#     print("merging")
+#     node = HuffmannNode()
+#     node.freq = nodeA.freq + nodeB.freq
+#     priority_queue.insert([None, node.freq])
+#     print("ready to return the node ", node.char, node.freq)
+#     return node
 
-# for item in priority_queue.heap:
-#   print(item)
+#   def insert(self,priority_queue):
+#     print("Inserting into tree: ")
+#     nodeA = priority_queue.getMin()
+#     priority_queue.delete_min()
+#     nodeB = priority_queue.getMin()
+#     priority_queue.delete_min()
 
+#     new_node_A = HuffmannNode(nodeA)
+#     new_node_B = HuffmannNode(nodeB)
+#     new_node_C = self.mergeNodes(new_node_A, new_node_B, priority_queue)
+#     new_node_C.left = new_node_A 
+#     new_node_C.right = new_node_B
+#     print("nodeA: ", new_node_A.char,new_node_A.freq)
+#     print("nodeB:", new_node_B.char, new_node_B.freq)
+#     print("nodeC:", new_node_C.freq)
+# class HuffmannNode:
+#   def __init__(self,node=None):
+#     self.right = None
+#     self.left = None
+#     self.freq = node[1] if node else None
+#     self.char = node[0] if node else None
 
-class HuffmannTree:
-  def mergeNodes(self,nodeA,nodeB, priority_queue):
-    node = HuffmannNode()
-    node.freq = nodeA.freq + nodeB.freq
-    priority_queue.insert([None, node.freq])
-    return HuffmannNode(node)
+# hufftree = HuffmannTree()
 
-  def insert(self,priority_queue):
-    nodeA = priority_queue.getMin()
-    priority_queue.delete_min()
-    nodeB = priority_queue.getMin()
-    priority_queue.delete_min()
-
-    new_node_A = HuffmannNode(nodeA)
-    new_node_B = HuffmannNode(nodeB)
-    new_node_C = self.mergeNodes(new_node_A, new_node_B, priority_queue)
-    new_node_C.left = new_node_A 
-    new_node_C.right = new_node_B
-
-class HuffmannNode:
-  def __init__(self,node=None):
-    self.right = None
-    self.left = None
-    self.freq = node.freq if node.char else None
-    self.char = node.char if node.char else None
+# while len(priority_queue.heap) >= 1:
+#   hufftree.insert(priority_queue)
